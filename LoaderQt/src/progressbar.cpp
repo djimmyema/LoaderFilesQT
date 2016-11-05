@@ -1,6 +1,6 @@
 #include "progressbar.h"
 
-
+//ConcreteObserver
 
 ProgressBar::ProgressBar(FileLoader *s) : subject(s),actualCounter(0){
 
@@ -16,10 +16,10 @@ ProgressBar::ProgressBar(FileLoader *s) : subject(s),actualCounter(0){
     //wrapper->setLayout(layout);
     //wrapper->setFixedWidth(450);
     //wrapper->setFixedHeight(350);
-    //wrapper->setWindowTitle(QString::fromStdString("Progressive File Loader"));
+    //wrapper->setWindowTitle(QString::fromStdString("Progress Bar"));
 
-// if we want to show the load window before all the files are loaded
-//  we should uncoment the function call below
+// Se vogliamo visualizzare la finestra di caricamento prima che i file vengano caricati
+//  bisognerà levare il commento all istruzione sotto
     //wrapper->hide();
     //wrapper->show();
 
@@ -31,13 +31,13 @@ ProgressBar::~ProgressBar() {
 
 }
 
-// this is just for testin the list and printing the objects inside it , for debugging
-void ProgressBar::display(){
-    for (auto itr = progressFiles.begin(); itr != progressFiles.end(); itr++)
-        cout << "path : " << (*itr).getPath() << " - size : " << (*itr).getFileSize() << endl;
-}
+// Questo è solo per testare la lista e stampare gli oggetti al interno di essa per il debugging
+//void ProgressBar::display(){
+//    for (auto itr = progressFiles.begin(); itr != progressFiles.end(); itr++)
+//        cout << "path : " << (*itr).getPath() << " - size : " << (*itr).getFileSize() << endl;
+//}
 
-// this function gets the size in bytes of all the files saved on the list in a certain time
+//Questa funzione rende le dimensioni in byte di tutti i files salvati nella lista
 int ProgressBar::getTotalSize(){
     int totalSize = 0;
     for (auto it = progressFiles.begin(); it != progressFiles.end(); it++)
@@ -45,34 +45,36 @@ int ProgressBar::getTotalSize(){
     return totalSize;
 }
 
-// this function will be called when the upload button is clicked ,
-// and will copy all the files from the FileLoader,
-// updating a progress bar and the file list
+// Questa funzione verrà eseguita quando il bottone upload verrà cliccato ,
+// e copierà tutti i file dal FileLoader,
+// aggiornando una progress bar e la lista dei files
 void ProgressBar::updateProgressValue(){
 
+// Se vogliamo vedere la nuova finestra quando il bottone di upload verrà premuto la prossima istruzione dovrà essere senza commento
+//    wrapper->show();
+
+
     SplashWindow splashWindow;
+
     splashWindow.splashShow();
 
 
-    float fileCounter= subject->getFileCounter();
-    float percentProgress= (float)100/subject->getFileCounter();
-    actualCounter=percentProgress;
+        float fileCounter= subject->getFileCounter();
+        float percentProgress= (float)100/subject->getFileCounter();
+        actualCounter=percentProgress;
 
-    for (int i=0; i<fileCounter;i++){
-        update(subject->getFileInPosition(i));//this updates the observer list
-        //std::cout<<"loaded path : "<<subject->getFileInPosition(i).getPath();
-        //std::cout<<" - size : "<<subject->getFileInPosition(i).getFileSize()<<std::endl;
-        splashWindow.updateProgressScreen(actualCounter,this->getTotalSize(),subject->getFileInPosition(i).getPath());
+        for (int i=0; i<fileCounter;i++){
+            update(subject->getFileInPosition(i));
 
+            splashWindow.updateProgressScreen(actualCounter,this->getTotalSize(),subject->getFileInPosition(i).getPath());
 
+// questa istruzione visualizzerà la cartella da cui verrà caricato il file
+//textBrowser->append(QString::fromStdString(subject->getFileInPosition(i).getPath()));
 
-// this displays the paths that will be loaded
-        //textBrowser->append(QString::fromStdString(subject->getFileInPosition(i).getPath()));
+// questo visualizzerà la progress bar
+//progressBar->setValue(actualCounter);
 
-// this diplays the progress bar
-        //progressBar->setValue(actualCounter);
-
-//this displays the text label with info about memory size loaded
+//questo visualizzerà la text label le informazioni inerenti ai byte  di memoria caricati del file
         //textLabel->setText("Total loaded files : "+QString::number(this->getTotalSize())+" bytes");
 
         actualCounter+=percentProgress;
@@ -84,26 +86,26 @@ void ProgressBar::updateProgressValue(){
 
 }
 
-// this function is the same as updateProgressValue ,
-// it will be used only for testing with google framework
+//Questa funzione e' la stessa di updateProgressValue ,
+// verrà utilizzata solo per i test con google framework
 //void ProgressBar::updateProgressTest(){
-//
+
 //        float fileCounter= subject->getFileCounter();
 //        float percentProgress= (float)100/subject->getFileCounter();
 //        for (int i=0; i<fileCounter;i++){
-//            update(subject->getFileInPosition(i));//this updates the observer list
-//            std::cout<<"loaded path : "<<subject->getFileInPosition(i).getPath();
-//            std::cout<<" - size : "<<subject->getFileInPosition(i).getFileSize()<<std::endl;
+//            update(subject->getFileInPosition(i));//Questo aggiorna la lista observer
+//            std::cout<<"Cartelle caricate : "<<subject->getFileInPosition(i).getPath();
+//            std::cout<<" - dimensione : "<<subject->getFileInPosition(i).getFileSize()<<std::endl;
 //            actualCounter+=percentProgress;
-//            std::cout<<"\tLoad : "<<i+1<<"/"<<subject->getFileCounter();
-//            std::cout<<" files , memory load : "<<this->getTotalSize()<<"/"<<subject->getTotalFileSize()<<" bytes" <<std::endl;
-//
+//            std::cout<<"\tCaricati : "<<i+1<<"/"<<subject->getFileCounter();
+//            std::cout<<" files , Caricamento in memoria : "<<this->getTotalSize()<<"/"<<subject->getTotalFileSize()<<" bytes" <<std::endl;
+
 //        }
-//
+
 //    }
 
-// this function is used to update the list with objects of type: Files
-void ProgressBar::addFiles(Files file) {
+// questa funzione è usata per aggiornare la lista con oggetti di tipo Files
+void ProgressBar::addFiles(File file) {
     progressFiles.push_back(file);
 
 }

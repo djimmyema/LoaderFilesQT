@@ -7,7 +7,7 @@
 #include <vector>
 #include "subject.h"
 #include "observer.h"
-#include "files.h"
+#include "file.h"
 
 class FileLoader : public Subject {
 
@@ -16,18 +16,24 @@ public:
 
     ~FileLoader();
 
-    void putFiles(Files files);
+    void putFiles(std::string myFilePath);
+    void LoadFiles();
+    void LoadSingleFile();
 
+
+  //questa funzione conta il numero dei file caricati
     int getFileCounter();
 
-    void display();
+//display() viene usato solo per fare il debug del programma  si puo anche togliere
+    //void display();
 
-    Files getLastFile();
+    File getLastFile();
 
+    //questa funzione calcola la memoria che occupano in totale tutti file selezionati
     int getTotalFileSize();
 
 
-    Files getFileInPosition(int position);
+    File getFileInPosition(int position);
 
 
     //---------- Functions ovverided from the subject class -------------
@@ -47,7 +53,7 @@ private:
     int totalSize;
     int fileCounter;
     list<Observer*> observer;
-    vector<Files> fileList;
+    vector<File> fileList;
 
 
 };

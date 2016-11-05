@@ -13,17 +13,17 @@ using namespace std;
 
 TEST(testFilesClass, testGetPath){
 
-    Files* actual= new Files("/home/astimanuka/Desktop/main.cpp");
+    File* actual= new File("/home/salomon/Bureau/googletestfiles/DownloadItems.cpp");
 
-    ASSERT_EQ("/home/astimanuka/Desktop/main.cpp",actual->getPath());
+    ASSERT_EQ("/home/salomon/Bureau/googletestfiles/DownloadItems.cpp",actual->getPath());
 
 }
 
 TEST(testFilesClass,testGetSize){
 
-    Files* actual= new Files("/home/astimanuka/Desktop/main.cpp");
+    File* actual= new File("/home/salomon/Bureau/googletestfiles/DownloadItems.cpp");
 
-    ASSERT_EQ(12346,actual->getFileSize());
+    ASSERT_EQ(990,actual->getFileSize());
 
 }
 
@@ -35,9 +35,9 @@ TEST(testFileLoaderClass, testFileCounter){
     //ProgressBar* progress=new ProgressBar(fileLoader);
 
 
-    Files actual("/home/astimanuka/Desktop/main.cpp");
-    Files actual1("/home/astimanuka/Desktop/main.cpp");
-    Files actual2("/home/astimanuka/Desktop/main.cpp");
+    File actual("/home/salomon/Bureau/googletestfiles/DownloadItems.cpp");
+    File actual1("/home/salomon/Bureau/googletestfiles/DownloadItems.cpp");
+    File actual2("/home/salomon/Bureau/googletestfiles/DownloadItems.cpp");
 
     fileLoader->putFiles(actual);
     fileLoader->putFiles(actual1);
@@ -53,15 +53,15 @@ TEST(testFileLoaderClass,testGetTotalFileSize){
     //ProgressBar* progress=new ProgressBar(fileLoader);
 
 
-    Files* actual= new Files("/home/astimanuka/Desktop/main.cpp");
-    Files* actual1= new Files("/home/astimanuka/Desktop/main.cpp");
-    Files* actual2= new Files("/home/astimanuka/Desktop/main.cpp");
+    File* actual= new File("/home/salomon/Bureau/googletestfiles/DownloadItems.cpp");
+    File* actual1= new File("/home/salomon/Bureau/googletestfiles/DownloadItems.cpp");
+    File* actual2= new File("/home/salomon/Bureau/googletestfiles/DownloadItems.cpp");
 
     fileLoader->putFiles(*actual);
     fileLoader->putFiles(*actual1);
     fileLoader->putFiles(*actual2);
 
-    ASSERT_EQ(37038,fileLoader->getTotalFileSize());
+    ASSERT_EQ(2970,fileLoader->getTotalFileSize());
 
 }
 
@@ -73,24 +73,22 @@ TEST(testProgressBarClass, testProgressiveLoad){
 
 
 
-    Files* actual= new Files("/home/astimanuka/Desktop/test_uploader/Derived1.cpp");
-    Files* actual1= new Files("/home/astimanuka/Desktop/test_uploader/Derived2.cpp");
-    Files* actual2= new Files("/home/astimanuka/Desktop/test_uploader/DerivedAbstractClass.cpp");
-    Files* actual3= new Files("/home/astimanuka/Desktop/test_uploader/IntMaxFunctor.cpp");
-    Files* actual4= new Files("/home/astimanuka/Desktop/test_uploader/main.cpp");
+    File* actual= new File("/home/salomon/Bureau/googletestfiles/DownloadItems.cpp");
+    File* actual1= new File("/home/salomon/Bureau/googletestfiles/eventibottoni.cpp");
+    File* actual2= new File("/home/salomon/Bureau/googletestfiles/GuiNotifier.cpp");
+
 
     fileLoader->putFiles(*actual);
     fileLoader->putFiles(*actual1);
     fileLoader->putFiles(*actual2);
-    fileLoader->putFiles(*actual3);
-    fileLoader->putFiles(*actual4);
+
 
     ProgressBar* myProgress=new ProgressBar(fileLoader);
 
     cout<<"\t\nTesting the upload progress of files :\n"<<endl;
 
     myProgress->updateProgressTest();
-    ASSERT_EQ(146659,myProgress->getTotalSize());
+    ASSERT_EQ(1559,myProgress->getTotalSize());
 }
 
 

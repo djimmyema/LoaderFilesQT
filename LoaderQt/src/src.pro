@@ -7,21 +7,21 @@ TARGET = LoaderQt
 
 SOURCES += main.cpp \
     mainwindow.cpp \
-    files.cpp \
     subject.cpp \
     progressbar.cpp \
     fileloader.cpp \
     observer.cpp \
-    splashwindow.cpp
+    splashwindow.cpp \
+    file.cpp
 
 HEADERS += \
     mainwindow.h \
-    files.h \
     subject.h \
     observer.h \
     progressbar.h \
-    fileloader.h  \
-    splashwindow.h
+    fileloader.h \
+    splashwindow.h \
+    file.h
 
 FORMS += \
     mainwindow.ui

@@ -6,7 +6,7 @@
 #include <QMessageBox>
 #include <QTextStream>
 #include <QStringList>
-#include "files.h"
+#include "file.h"
 #include "progressbar.h"
 #include "fileloader.h"
 #include "splashwindow.h"
@@ -27,9 +27,12 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_browseButton_clicked();
-    void on_uploadButton_clicked();
 
+    void on_menuBrowse_triggered();
+
+    void on_menuUpload_triggered();
+
+    void on_menuQuit_triggered();
 
 private:
     void browseButtonClick();
