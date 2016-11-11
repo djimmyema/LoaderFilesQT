@@ -17,7 +17,7 @@ public:
 
     virtual void notify() = 0;
 
-    virtual ~Subject()=0;
+    virtual ~Subject();
 
 };
 

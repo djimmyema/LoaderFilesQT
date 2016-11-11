@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     myFileLoader=new FileLoader();
-    myprogress=new ProgressBar(myFileLoader);
+    myProgress=new ProgressBar(myFileLoader);
     checkedUpload=false;
     checkedBrowse=false;
 }
@@ -18,7 +18,7 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete myFileLoader;
-    delete myprogress;
+    delete myProgress;
 }
 
 
@@ -29,10 +29,9 @@ void MainWindow::browseButtonClick(){                    //Procedura di selezion
 
     for(QStringList::iterator it=filePath.begin();it!=filePath.end();it++){
         myFilePath=(*it).toUtf8().constData(); //Converte una QString in una String
-        Files files(myFilePath);
 
 // Salva tutti i files in una lista dentro la classe fileloader
-        myFileLoader->putFiles(files);
+        myFileLoader->putFiles(myFilePath);
 
 // Visualizza le cartelle dei file Aperti
         ui->textBrowser->append(*it);
@@ -48,13 +47,14 @@ void MainWindow::browseButtonClick(){                    //Procedura di selezion
 // Il bottone browse è stato cliccato una volta
     checkedBrowse=true;
 
+
 }
 
 
 void MainWindow::uploadButtonClick(){
 
 // Questa è una funzione membro della classe progress bar che carica una nuova finestra con un caricamento progressivo dei files.
-    myprogress->updateProgressValue();
+    myProgress->updateProgressValue();
 
 // il bottone upload e' cliccabile solo una volta , altrimenti fa visualizzare un message box .
     checkedUpload=true;

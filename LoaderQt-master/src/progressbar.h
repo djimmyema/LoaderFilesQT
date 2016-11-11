@@ -9,8 +9,9 @@
 #include <QLabel>
 #include <QString>
 #include "observer.h"
-#include "files.h"
+#include "file.h"
 #include "fileloader.h"
+#include "splashwindow.h"
 
 
 class ProgressBar : public Observer  {
@@ -21,8 +22,8 @@ public:
 
     ~ProgressBar();
 
-    void display() ;
 
+//questa funzione ritorna il valore totale  dei file selezionati 
     int getTotalSize() ;
 
     void updateProgressValue();
@@ -33,22 +34,22 @@ public:
 
 // overrided functions from the Observer class
 
-    void update(Files file)override{
-        addFiles(file);
+    void update(File file)override{
+        addFile(file);//deve tirare fuori dati per ridisegnare la progressbar
     }
 
 private:
-    void addFiles(Files file);
+    void addFile(File file);
 
 private:
     FileLoader* subject;
-    QWidget* wrapper;
+    //QWidget* wrapper;
     float actualCounter;
-    QProgressBar* progressBar;
-    QVBoxLayout* layout;
-    QTextBrowser* textBrowser;
-    QLabel* textLabel;
-    list <Files> progressFiles;
+    //QProgressBar* progressBar;
+    //QVBoxLayout* layout;
+    //QTextBrowser* textBrowser;
+    //QLabel* textLabel;
+    list <File> progressFiles;
 
 };
 

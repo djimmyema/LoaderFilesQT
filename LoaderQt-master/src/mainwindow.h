@@ -6,9 +6,10 @@
 #include <QMessageBox>
 #include <QTextStream>
 #include <QStringList>
-#include "files.h"
+#include "file.h"
 #include "progressbar.h"
 #include "fileloader.h"
+#include "splashwindow.h"
 #include <iostream>
 
 
@@ -39,7 +40,7 @@ private:
 
 private:
     FileLoader *myFileLoader;
-    ProgressBar *myprogress;
+    ProgressBar *myProgress;
     bool checkedUpload;
     bool checkedBrowse;
     Ui::MainWindow *ui;

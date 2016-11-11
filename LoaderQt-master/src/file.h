@@ -6,11 +6,11 @@
 
 using namespace std;
 
-class Files {
+class File {
 
 public:
-    Files(string p);
-
+    File(string p);
+    // questo ritorna il file size  di un singolo file
     virtual int getFileSize();
 
 

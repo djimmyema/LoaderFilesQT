@@ -1,7 +1,7 @@
 #ifndef OBSERVER_H
 #define OBSERVER_H
 #include <iostream>
-#include "files.h"
+#include "file.h"
 
 using namespace std;
 
@@ -12,7 +12,7 @@ protected:
 
 public:
 
-    virtual void update(Files file) = 0;
+    virtual void update(File file) = 0;
 
     virtual ~Observer()=0;
 };
